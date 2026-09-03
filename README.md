@@ -1,17 +1,34 @@
-# BioSample | Gestión de Muestras Biológicas
+# BioSample
 
-Aplicación web desarrollada en **PHP puro (sin frameworks)** y **Programación Orientada a Objetos (POO)** como parte de las actividades diagnósticas del programa de Análisis y Desarrollo de Software.
+## Integrantes
+- Camilo Sánchez
+- Liviston Palacios
+- Fabián Álvarez
 
-## Características Principales
-- **Registro de Muestras:** Formulario completo para registrar muestras biológicas y asociarlas a un tipo y responsable.
-- **POO y Relaciones:** Implementación de clases independientes (`MuestraBiologica`, `TipoMuestra`, `Responsable`, `GestorMuestras`) aplicando encapsulamiento y composición.
-- **Filtros y Búsquedas:** Permite buscar por código, procedencia o responsable, además de filtrar por estado.
-- **Manejo de Sesiones:** Persistencia temporal de los registros utilizando `$_SESSION`.
-- **Interfaz Moderna:** Diseño responsivo construido con **Bootstrap 5** y Bootstrap Icons.
+## Problema que intenta resolver
+En los laboratorios de investigación y diagnóstico, el control y la trazabilidad de las muestras biológicas (como sangre, tejidos, cultivos y muestras genéticas) suelen gestionarse de manera manual o dispersa. Esto genera riesgos de pérdida de información, errores en la identificación de procedencias, dificultad en el seguimiento de estados (almacenada, en proceso, analizada, descartada) y pérdida de tiempo al buscar registros específicos por parte del personal responsable.
 
-## Estructura del Proyecto
-- `index.php`: Panel principal con listado, búsqueda y filtros.
-- `registrar.php`: Formulario de captura y procesamiento por método POST con validaciones.
-- `detalle.php`: Vista de detalle individual de cada muestra mediante GET.
-- `classes/`: Clases lógicas y de entidad del sistema.
-- `includes/`: Cabeceras y pies de página reutilizables (`include`/`require`).
+## Funcionalidades implementadas
+- **Registro de muestras:** Formulario web seguro para ingresar nuevas muestras asociándolas a un tipo y a un responsable.
+- **Listado general e interactivo:** Visualización tabular de todas las muestras almacenadas en el sistema.
+- **Búsqueda y filtros avanzados:** Permite filtrar las muestras de forma dinámica por estado y realizar búsquedas de texto por código, procedencia o nombre del responsable.
+- **Consulta de detalles individuales:** Vista detallada de cada muestra mediante paso de parámetros por `GET`.
+- **Persistencia en sesión:** Mantenimiento de los datos de las muestras durante toda la navegación mediante `$_SESSION`.
+- **Manejo de errores y validaciones:** Alertas visuales para campos obligatorios y validación de códigos duplicados.
+
+## Clases creadas y responsabilidad de cada una
+- **`MuestraBiologica`**: Representa la entidad central de la muestra. Almacena atributos como código, procedencia, fecha, estado y se relaciona por composición con el tipo y el responsable.
+- **`TipoMuestra`**: Modela las categorías científicas disponibles para clasificar cada muestra biológica.
+- **`Responsable`**: Define al investigador o laboratorista a cargo de la muestra (incluyendo cédula, nombre completo y laboratorio).
+- **`GestorMuestras`**: Clase lógica encargada de administrar el ciclo de vida del arreglo en sesión (`$_SESSION`), agregando, buscando, filtrando y validando los registros.
+
+## Regla o cálculo principal implementado
+El sistema evalúa de manera lógica el estado actual de cada muestra y determina de forma automatizada la clase de diseño visual (insignias de color con `match` en PHP) y valida que no se dupliquen códigos únicos de muestras al momento de procesar el formulario de registro por método `POST`.
+
+## Framework CSS utilizado
+- **Bootstrap 5.3.3**: Utilizado para estructurar interfaces responsivas, tarjetas (`cards`), tablas fluidas, barras de navegación oscuras, alertas de validación e insignias de estado con un diseño moderno.
+
+## Instrucciones breves para ejecutar el proyecto
+1. Clonar el repositorio en tu entorno local dentro de la carpeta del servidor web (por ejemplo, `htdocs` de XAMPP):
+   ```bash
+   git clone [https://github.com/fabianalvarezjdhdb-cmyk/biosample.git](https://github.com/fabianalvarezjdhdb-cmyk/biosample.git)
